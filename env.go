@@ -206,6 +206,16 @@ func set(t reflect.Type, f reflect.Value, value string) error {
 			return err
 		}
 		f.SetInt(int64(v))
+	case reflect.Struct:
+		if t.PkgPath() == "time" && t.Name() == "Time" {
+			tValue, err := time.Parse(time.RFC3339, value)
+			if err != nil {
+				return err
+			}
+			f.Set(reflect.ValueOf(tValue))
+		} else {
+			return ErrUnsupportedType
+		}
 	default:
 		return ErrUnsupportedType
 	}
@@ -298,7 +308,12 @@ func Marshal(v interface{}) (EnvSet, error) {
 				return nil, err
 			}
 		} else {
-			envValue = fmt.Sprintf("%v", el)
+			switch v := el.(type) {
+			case time.Time:
+				envValue = v.Format(time.RFC3339)
+			default:
+				envValue = fmt.Sprintf("%v", el)
+			}
 		}
 
 		for _, envKey := range envKeys {

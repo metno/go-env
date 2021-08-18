@@ -290,17 +290,18 @@ func TestUnmarshalInvalid(t *testing.T) {
 	}
 }
 
-func TestUnmarshalUnsupported(t *testing.T) {
-	environ := map[string]string{
-		"TIMESTAMP": "2016-07-15T12:00:00.000Z",
-	}
+// Removed this test since this package now do support unmarshal and marshal of time.Time in RFC3339 format.
+// func TestUnmarshalUnsupported(t *testing.T) {
+// 	environ := map[string]string{
+// 		"TIMESTAMP": "2016-07-15T12:00:00.000Z",
+// 	}
 
-	var unsupportedStruct UnsupportedStruct
-	err := Unmarshal(environ, &unsupportedStruct)
-	if err != ErrUnsupportedType {
-		t.Errorf("Expected error 'ErrUnsupportedType' but got '%s'", err)
-	}
-}
+// 	var unsupportedStruct UnsupportedStruct
+// 	err := Unmarshal(environ, &unsupportedStruct)
+// 	if err != ErrUnsupportedType {
+// 		t.Errorf("Expected error 'ErrUnsupportedType' but got '%s'", err)
+// 	}
+// }
 
 func TestUnmarshalFromEnviron(t *testing.T) {
 	environ := os.Environ()
