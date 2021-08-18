@@ -1,10 +1,7 @@
 # go-env
 Modified fork of github.com/Netflix/go-env. This package now supports marshalling and unmarshalling of time.Time, formatted in RFC3339.
 
-[![Build Status](https://travis-ci.com/Netflix/go-env.svg?branch=master)](https://travis-ci.com/Netflix/go-env)
-[![GoDoc](https://godoc.org/github.com/Netflix/go-env?status.svg)](https://godoc.org/github.com/Netflix/go-env)
-[![NetflixOSS Lifecycle](https://img.shields.io/osslifecycle/Netflix/go-expect.svg)]()
-
+[![GoDoc](https://godoc.org/github.com/Netflix/go-env?status.svg)](https://godoc.org/github.com/metno/go-env)
 
 Package env provides an `env` struct field tag to marshal and unmarshal environment variables.
 
@@ -17,7 +14,7 @@ import (
 	"log"
 	"time"
 
-	env "github.com/Netflix/go-env"
+	env "github.com/metno/go-env"
 )
 
 type Environment struct {
